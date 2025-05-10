@@ -29,6 +29,20 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Configure SAML SSO Identity Providers
+config :simple_saml_example, :saml,
+  service_provider: %{
+    entity_id: "http://localhost:4000"
+  },
+  identity_providers: [
+    %{
+      id: "dummy-simplesaml",
+      signin_url: "http://localhost:8080/simplesaml/saml2/idp/SSOService.php",
+      entity_id: "http://localhost:8080/simplesaml/saml2/idp/metadata.php",
+      certificate: File.read!("priv/idp.crt")
+    }
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

@@ -41,7 +41,9 @@ defmodule SimpleSamlExample.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:simple_saml, git: "https://github.com/zoldar/simple_saml.git", branch: "zoldar/ns-fix"},
+      {:xml_builder, "~> 2.1"}
     ]
   end
 
