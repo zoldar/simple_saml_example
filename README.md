@@ -1,18 +1,23 @@
 # SimpleSamlExample
 
-To start your Phoenix server:
+Minimal example of SAML SSO based on [simple_saml](https://github.com/MBXSystems/simple_saml)
+and [xml_builder](https://github.com/joshnuss/xml_builder).
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Setup
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```
+mix deps.get
+docker-compose up -d
+curl http://localhost:8080/simplesaml/module.php/saml/idp/certs.php/idp.crt -o priv/idp.crt
+iex -S mix phx.server
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Usage
 
-## Learn more
+- Open http://localhost:4000/saml/auth/signin/dummy-simplesaml in the browser
+- Provide "user1" or "user2" for username and "password" for password in IdP login form
+- Observe printout of parsed assertion in elixir console
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## Implementation
+
+See the commit titled "Implement minimal SAML example" for implementation.
